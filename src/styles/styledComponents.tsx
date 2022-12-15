@@ -83,8 +83,9 @@ export const PaletteFormSubmitSC = styled(SubmitInput)`
 	margin: 1%;
 	padding: 1%;
 	border-radius: 5px;
+	transition: all 0.3s ease-in-out;
 	&:hover {
-		box-shadow: 0 0 2px 1px white;
+		box-shadow: 0 5px 0 3px var(--accent-blue);
 	}
 	&:active {
 		box-shadow: 0 0 2px var(--o-black) inset;
