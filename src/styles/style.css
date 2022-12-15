@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Gluten&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Arima&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
 
@@ -17,6 +18,8 @@
 	--font-size-small: 1rem;
 	--font-size-med: 1.5rem;
 	--font-size-large: 2rem;
+	--font-size-title: 4rem;
+	--font-title: "Gluten", Times, serif;
 	--font-display: "Arima", sans-serif;
 	--font-para: "Quicksand", Times, serif;
 }

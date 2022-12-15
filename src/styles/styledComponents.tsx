@@ -3,6 +3,48 @@ import ColourSwatch from "../components/ColourSwatch";
 import { TextInput, SubmitInput } from "../components/Inputs";
 import { NavLink } from "react-router-dom";
 
+// **HEADER
+export const AppHeaderSC = styled.header`
+	background-image: linear-gradient(#043742, var(--accent-blue));
+	width: 100vw;
+	position: sticky;
+	top: 0;
+`;
+export const AppTitleSC = styled.h1`
+	font-family: var(--font-title);
+	font-size: var(--font-size-title);
+	margin: 1% auto;
+	color: var(--text-background);
+	text-shadow: 3px 3px var(--text-colour);
+`;
+export const NavContainer = styled.nav`
+	display: flex;
+	justify-content: space-between;
+	width: 70vw;
+	margin: 1.5% auto;
+`;
+export const NavButton = styled(NavLink)`
+	font-family: var(--font-para);
+	font-size: calc(var(--font-size-small) * 1.1);
+	text-decoration: none;
+	background-color: var(--accent-pink);
+	padding: 0.8%;
+	border-radius: 10px;
+	box-shadow: -5px -5px var(--accent-yellow);
+	transition: all 0.3s ease-out;
+
+	&:link,
+	&:visited {
+		color: white;
+		text-shadow: 1px 1px 1px var(--o-black);
+	}
+	&:hover {
+		box-shadow: 5px -5px var(--accent-yellow);
+	}
+	&:active {
+		box-shadow: 3px -3px var(--accent-yellow);
+	}
+`;
 // **NEW PALETTE
 export const PaletteFormSC = styled.form`
 	display: flex;
