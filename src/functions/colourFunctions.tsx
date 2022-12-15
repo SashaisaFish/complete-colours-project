@@ -1,7 +1,7 @@
 export function getRandomColour(): string {
 	let hex = "#" + Math.floor(Math.random() * 16777215).toString(16);
 	while (hex.length < 7) {
-		hex = `${hex}f`;
+		hex = `${hex}7`;
 	}
 
 	return hex;

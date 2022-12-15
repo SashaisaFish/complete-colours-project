@@ -55,9 +55,15 @@ export const PaletteHeaderSC = styled.h2`
 `;
 export const ColourPaletteSC = styled.article`
 	display: flex;
-	height: 60vh;
-	width: 85vw;
+	height: 70vh;
+	width: 90vw;
 	margin: 5vh auto;
+	padding: 5%;
+	background-color: var(--light-background);
+	box-shadow: 0 0 4px 4px var(--dark-background) inset,
+		20px 20px var(--accent-pink), -20px -20px var(--accent-yellow);
+	border: 5px double var(--accent-blue);
+	border-radius: 30px;
 `;
 
 // **SWATCH
@@ -68,6 +74,7 @@ export const ColourSwatchSC = styled(ColourSwatch)`
 	justify-items: center;
 	flex-grow: 1;
 	width: 100%;
+	box-shadow: 0 0 0 2px var(--dark-background);
 `;
 export const ColourHexSC = styled.p`
 	grid-row: 2 / 3;
@@ -83,18 +90,20 @@ export const ColourInputSC = styled.input`
 	grid-column: 1 / 3;
 	margin: 2% auto;
 	padding: 0;
-	border: none;
+	border: 1px solid white;
+	border-radius: 50%;
 	height: 10em;
 	width: 10em;
+	&:hover {
+		box-shadow: 0 0 4px 2px var(--o-white);
+	}
 	&::-webkit-color-swatch {
 		border-radius: 50%;
-		border: 1px solid white;
-		box-shadow: 0 0 4px 2px var(--o-white);
+		border: none;
 	}
 	&::-moz-color-swatch {
 		border-radius: 50%;
-		border: 1px solid white;
-		box-shadow: 0 0 4px 2px var(--o-white);
+		border: none;
 	}
 `;
 export const ColourInputLabelSC = styled.label`
@@ -117,7 +126,8 @@ export const AddNewSC = styled.button`
 	margin: 0;
 	padding: 0;
 	&:hover {
-		filter: opacity(100%) drop-shadow(0 0 4px 2px white);
+		opacity: 100%;
+		filter: drop-shadow(0 0 4px white);
 	}
 `;
 //  **SIDEBAR NAV

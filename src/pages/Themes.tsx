@@ -20,13 +20,13 @@ const Themes: React.FC = () => {
 	const [Palettes, setPalettes] = useState([]);
 	// fetch all user palettes
 	// response: data = [{Palette}]
-	const dirtyThemesArray: string[] = data.theme;
+	//const dirtyThemesArray: string[] = data.theme;
 	let themesArray: string[] = [];
-	dirtyThemesArray.forEach((theme) => {
-		//iterate through themesArray and check if theme === array[i]
-		//if theme exists already, do nothing
-		//if theme does not exist, push to themesArray
-	});
+	//dirtyThemesArray.forEach((theme) => {
+	//iterate through themesArray and check if theme === array[i]
+	//if theme exists already, do nothing
+	//if theme does not exist, push to themesArray
+	//});
 
 	return (
 		<main>
@@ -46,7 +46,7 @@ const Themes: React.FC = () => {
 			{themesArray.map((theme) => {
 				// fetch all palettes with theme
 				// response: data = [{Palette}]
-				setPalettes(data)
+				//setPalettes(data);
 				//const palettes: Palette[] = data;
 				return (
 					<ThemeContainerSC id={theme}>
