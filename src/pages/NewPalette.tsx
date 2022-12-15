@@ -41,6 +41,7 @@ const NewPalette: React.FC = () => {
 					<PaletteInputNameSC
 						id="palette-name"
 						label="Name"
+						autocomplete="off"
 						required={true}
 						onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
 							setName(e.target.value);

@@ -7,6 +7,7 @@ import { NavLink } from "react-router-dom";
 export const AppHeaderSC = styled.header`
 	background-image: linear-gradient(#043742, var(--accent-blue));
 	width: 100vw;
+	border-bottom: 2px solid var(--o-white);
 	position: sticky;
 	top: 0;
 `;
@@ -102,8 +103,7 @@ export const ColourPaletteSC = styled.article`
 	margin: 5vh auto;
 	padding: 5%;
 	background-color: var(--light-background);
-	box-shadow: 0 0 4px 4px var(--dark-background) inset,
-		20px 20px var(--accent-pink), -20px -20px var(--accent-yellow);
+	box-shadow: 0 0 4px 4px var(--dark-background) inset;
 	border: 5px double var(--accent-blue);
 	border-radius: 30px;
 `;
