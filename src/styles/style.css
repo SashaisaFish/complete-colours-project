@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css?family=Arima&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
+
+:root {
+	--dark-background: #2a2e31;
+	--light-background: #77777b;
+	--accent-yellow: #ffb554;
+	--accent-pink: #f15e76;
+	--accent-blue: #18d1c8;
+	--text-background: #e9f0f0;
+	--text-colour: #231f2a;
+	--o-white: rgba(255, 255, 255, 0.7);
+	--o-black: rgba(20, 18, 20, 0.7);
+	--button-shine: 1px 2px 2px var(--o-white) inset,
+		-1px -1px 5px 1px var(--o-black) inset;
+	--drop-shadow: 1px 2px 5px var(--o-black);
+	--font-size-small: 1rem;
+	--font-size-med: 1.5rem;
+	--font-size-large: 2rem;
+	--font-display: "Arima", sans-serif;
+	--font-para: "Quicksand", Times, serif;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+	margin: 0;
+	border: 0;
+	box-shadow: none;
+}
+
+#root {
+	box-sizing: border-box;
+	background-color: var(--dark-background);
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-flow: column;
+	place-items: center;
+}
+
+header {
+	text-align: center;
+	font-family: var(--font-display);
+	font-size: var(--font-size-large);
+}
+main {
+	width: 100%;
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	place-items: center;
+}
+footer {
+	width: 100vw;
+	padding: 0.7%;
+	color: #cde5d7;
+	text-align: center;
+	background-image: linear-gradient(var(--accent-blue), #043742);
+}
+
+label {
+	font-family: var(--font-para);
+	font-size: var(--font-size-small);
+}
