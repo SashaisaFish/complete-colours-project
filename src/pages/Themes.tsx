@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import ColourPalette from "../components/ColourPalette";
 import { NavLink } from "react-router-dom";
 import {
@@ -16,9 +17,9 @@ interface Palette {
 }
 
 const Themes: React.FC = () => {
-	{
-		/* fetch all user palettes */
-	}
+	const [Palettes, setPalettes] = useState([]);
+	// fetch all user palettes
+	// response: data = [{Palette}]
 	const dirtyThemesArray: string[] = data.theme;
 	let themesArray: string[] = [];
 	dirtyThemesArray.forEach((theme) => {
@@ -34,7 +35,9 @@ const Themes: React.FC = () => {
 					{themesArray.map((theme, index) => {
 						return (
 							<SidebarLiSC key={`${index}-${theme}`}>
-								<SidebarLinkSC to={`#${theme}`}>{theme}</SidebarLinkSC>
+								<SidebarLinkSC to={`#${theme}`}>
+									{theme}
+								</SidebarLinkSC>
 							</SidebarLiSC>
 						);
 					})}
@@ -42,11 +45,13 @@ const Themes: React.FC = () => {
 			</nav>
 			{themesArray.map((theme) => {
 				// fetch all palettes with theme
-				const palettes: Palette[] = data.theme;
+				// response: data = [{Palette}]
+				setPalettes(data)
+				//const palettes: Palette[] = data;
 				return (
 					<ThemeContainerSC id={theme}>
 						<ThemeHeaderSC>{theme}</ThemeHeaderSC>
-						{palettes.map((palette) => {
+						{Palettes.map((palette: Palette) => {
 							return (
 								<ColourPalette
 									palette={palette}

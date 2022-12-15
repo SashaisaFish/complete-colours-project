@@ -1,5 +1,9 @@
 import React from "react";
-import { ColourPaletteSC, ColourSwatchSC } from "../styles/styledComponents";
+import {
+	ColourPaletteSC,
+	ColourSwatchSC,
+	PaletteHeaderSC,
+} from "../styles/styledComponents";
 
 interface Palette {
 	name: string;
@@ -14,6 +18,7 @@ const ColourPalette: React.FC<PaletteProps> = ({ palette }) => {
 	const swatches: string[] = palette.colours;
 	return (
 		<ColourPaletteSC id={palette.name}>
+			<PaletteHeaderSC>{palette.name}</PaletteHeaderSC>
 			{swatches.map((color, index) => {
 				return (
 					<ColourSwatchSC
