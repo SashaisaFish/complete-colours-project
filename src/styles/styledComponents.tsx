@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import ColourSwatch from "../components/ColourSwatch";
 import { TextInput, SubmitInput } from "../components/Inputs";
+import { NavLink } from "react-router-dom";
 
 // **NEW PALETTE
 export const PaletteFormSC = styled.form`
@@ -119,3 +120,10 @@ export const AddNewSC = styled.button`
 		filter: opacity(100%) drop-shadow(0 0 4px 2px white);
 	}
 `;
+//  **SIDEBAR NAV
+export const SidebarUlSC = styled.ul``;
+export const SidebarLiSC = styled.li``;
+export const SidebarLinkSC = styled(NavLink)``;
+// **THEMES
+export const ThemeContainerSC = styled.section``;
+export const ThemeHeaderSC = styled.h3``;
