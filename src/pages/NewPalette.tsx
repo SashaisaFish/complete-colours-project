@@ -6,7 +6,7 @@ import {
 	PaletteFormSC,
 	PaletteHeaderSC,
 	PaletteInputNameSC,
-	PaletteFormSubmitSC,
+	SubmitSC,
 	PaletteInputThemeSC,
 } from "../styles/styledComponents";
 import { getRandomColour } from "../functions/colourFunctions";
@@ -56,7 +56,7 @@ const NewPalette: React.FC = () => {
 							console.log(Theme);
 						}}
 					/>
-					<PaletteFormSubmitSC value="Submit" />
+					<SubmitSC value="Submit" />
 				</PaletteFormSC>
 			</main>
 		);

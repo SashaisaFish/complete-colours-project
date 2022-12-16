@@ -3,6 +3,24 @@ import ColourSwatch from "../components/ColourSwatch";
 import { TextInput, SubmitInput } from "../components/Inputs";
 import { NavLink } from "react-router-dom";
 
+// **GENERAL
+export const SubmitSC = styled(SubmitInput)`
+	cursor: pointer;
+	font-family: var(--font-para);
+	font-size: var(--font-size-small);
+	margin: 1%;
+	padding: 1%;
+	border-radius: 5px;
+	box-shadow: -5px 5px var(--accent-blue);
+	transition: all 0.3s ease-in-out;
+	&:hover {
+		box-shadow: 5px 5px var(--accent-blue);
+	}
+	&:active {
+		box-shadow: 0 0 2px var(--o-black) inset;
+	}
+`;
+
 // **HEADER
 export const AppHeaderSC = styled.header`
 	background-image: linear-gradient(#043742, var(--accent-blue));
@@ -46,6 +64,26 @@ export const NavButton = styled(NavLink)`
 		box-shadow: 3px -3px var(--accent-yellow);
 	}
 `;
+// **LOGIN
+export const LoginFormSC = styled.form`
+	display: flex;
+	flex-direction: column;
+	place-items: center;
+`;
+export const LoginInputSC = styled.input`
+	font-family: var(--font-para);
+	font-size: var(--font-size-small);
+	text-align: center;
+	width: 60vw;
+	margin: 1%;
+	padding: 1%;
+	border-radius: 5px;
+`;
+export const LoginLabelSC = styled.label`
+	font-family: var(--font-para);
+	font-size: var(--font-size-small);
+	color: var(--accent-blue);
+`;
 // **NEW PALETTE
 export const PaletteFormSC = styled.form`
 	display: flex;
@@ -77,21 +115,6 @@ export const PaletteInputThemeSC = styled(TextInput)`
 	padding: 1%;
 	border-radius: 5px;
 `;
-export const PaletteFormSubmitSC = styled(SubmitInput)`
-	font-family: var(--font-para);
-	font-size: var(--font-size-small);
-	margin: 1%;
-	padding: 1%;
-	border-radius: 5px;
-	transition: all 0.3s ease-in-out;
-	&:hover {
-		box-shadow: 0 5px 0 3px var(--accent-blue);
-	}
-	&:active {
-		box-shadow: 0 0 2px var(--o-black) inset;
-	}
-`;
-
 // **CONTAINER
 export const PaletteHeaderSC = styled.h2`
 	font-family: var(--font-display);
@@ -170,7 +193,17 @@ export const AddNewSC = styled.button`
 	padding: 0;
 	&:hover {
 		opacity: 100%;
-		filter: drop-shadow(0 0 4px white);
+		filter: drop-shadow(0 0 4px var(--o-white));
+	}
+`;
+export const PlusButtonSC = styled.button`
+	grid-row: 3 / 4;
+	font-family: var(--font-title);
+	font-size: var(--font-size-large);
+	opacity: 50%;
+	&:hover {
+		opacity: 100%;
+		text-shadow: 0 0 4px var(--o-white);
 	}
 `;
 //  **SIDEBAR NAV

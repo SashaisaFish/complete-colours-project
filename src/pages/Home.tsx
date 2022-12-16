@@ -1,12 +1,10 @@
 import React from "react";
+import LoginForm from "../components/LoginForm";
 
 const Home: React.FC = () => {
 	return (
 		<main>
-			<h2>HOME</h2>
-			<a href="/new">
-				<p>NEW</p>
-			</a>
+			<LoginForm />
 		</main>
 	);
 };
