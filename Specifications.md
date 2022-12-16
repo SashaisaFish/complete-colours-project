@@ -47,3 +47,7 @@ User can mark their palettes as public or private - all palettes marked as publi
 User can delete their account
 
 ## WON'T HAVE
+
+### Unicorns
+
+Probably.
