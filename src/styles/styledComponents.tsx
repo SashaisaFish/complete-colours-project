@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import ColourSwatch from "../components/ColourSwatch";
 import { TextInput, SubmitInput } from "../components/Inputs";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 // **GENERAL
 export const SubmitSC = styled(SubmitInput)`
@@ -83,6 +83,23 @@ export const LoginLabelSC = styled.label`
 	font-family: var(--font-para);
 	font-size: var(--font-size-small);
 	color: var(--accent-blue);
+`;
+export const LoginTagSC = styled.p`
+	font-family: var(--font-para);
+	font-size: var(--font-size-small);
+	color: var(--text-background);
+`;
+export const LoginLinkSC = styled(Link)`
+	&:link,
+	&:visited {
+		color: white;
+	}
+	&:hover {
+		text-decoration: underline var(--accent-yellow);
+	}
+	&:active {
+		text-decoration: underline var(--accent-pink);
+	}
 `;
 // **NEW PALETTE
 export const PaletteFormSC = styled.form`

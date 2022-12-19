@@ -16,7 +16,7 @@ interface User {
 	password: string;
 }
 
-const LoginForm: React.FC = () => {
+const RegForm: React.FC = () => {
 	const [Username, setUsername] = useState<string>();
 	const [Password, setPassword] = useState<string>();
 	const [User, setUser] = useState();
@@ -24,35 +24,29 @@ const LoginForm: React.FC = () => {
 	return (
 		<>
 			<LoginFormSC
-				// action="{`${databasePath}/login`}"
-				// method="POST"
-				//target="_blank"
 				onSubmit={async (e) => {
 					e.preventDefault();
-					// const data = JSON.stringify({
-					// 	username: Username,
-					// 	password: Password,
-					// });
+					// fetch to /register
 					const data = `username=${Username}&password=${Password}`;
-
-					// accidental copy paste lol
-					const res = await request(
-						"/login",
-						{
-							method: "POST",
-						},
-						data
-					);
-					const resData = await res.json();
-					if (res.ok) {
-						console.log(resData);
-						localStorage.setItem("id", resData);
-						navigate("/palettes");
-					} else {
-						window.alert(resData.detail);
-					}
+					const res = await request()
+					// const res = await request(
+					// 	"/login",
+					// 	{
+					// 		method: "POST",
+					// 	},
+					// 	data
+					// );
+					// const resData = await res.json();
+					// if (res.ok) {
+					// 	console.log(resData);
+					// 	localStorage.setItem("id", resData);
+					// 	navigate("/palettes");
+					// } else {
+					// 	window.alert(resData.detail);
+					// }
 				}}
 			>
+				{/* these are just the inputs for username and password and onChange they setUsername/Password to the variable */}
 				<LoginLabelSC htmlFor="username">Username:</LoginLabelSC>
 				<LoginInputSC
 					type="text"
@@ -73,14 +67,14 @@ const LoginForm: React.FC = () => {
 					}}
 					required
 				/>
-				<SubmitSC value="Login" />
+				<SubmitSC value="Register" />
 			</LoginFormSC>
 			<LoginTagSC>
-				Don't have an account?&nbsp;
-				<LoginLinkSC to="/register">Register</LoginLinkSC>
+				Already have an account?&nbsp;
+				<LoginLinkSC to="/">Login</LoginLinkSC>
 			</LoginTagSC>
 		</>
 	);
 };
 
-export default LoginForm;
+export default RegForm;
