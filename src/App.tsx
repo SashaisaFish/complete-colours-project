@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
 	BrowserRouter as Router,
 	Routes,
 	Route,
 	createBrowserRouter,
 	createRoutesFromElements,
+	redirect,
+	RouterProvider,
+	Outlet,
 } from "react-router-dom";
 import Home from "./pages/Home";
 import Palettes from "./pages/Palettes";
@@ -14,58 +17,34 @@ import Register from "./pages/Register";
 import Header from "./components/Header";
 import UserContext from "./contexts/userContext";
 import Root from "./pages/Root";
-
-interface ContextProps {
-	user: {
-		User: string;
-		setUser: React.Dispatch<React.SetStateAction<string>>;
-	};
-	children: React.ReactNode;
-}
-
-async function userLoader(
-	setUser: React.Dispatch<React.SetStateAction<string>>
-) {
-	const id = localStorage.getItem("id");
-	if (id) {
-		setUser(id);
-	}
-}
-
-const PageWithUserContext: React.FC<ContextProps> = (props) => {
-	return (
-		<UserContext.Provider value={props.user}>
-			{props.children}
-		</UserContext.Provider>
-	);
-};
+import Error from "./pages/Error";
+import getUserId from "./functions/getUserId";
+import Footer from "./components/Footer";
+import loginHandler from "./functions/loginHandler";
 
 function App() {
-	const [User, setUser] = useState("");
+	// const [loaded, setLoaded] = useState(false);
+	const id = getUserId();
+	const [User, setUser] = useState(id);
+	useEffect(() => {
+		const loggedInUser = localStorage.getItem("id");
+		if (loggedInUser) {
+			const id = getUserId();
+			setUser(id);
+		}
+	}, []);
 
-	const router = createBrowserRouter(
-		createRoutesFromElements(
-			<Route
-				path="/"
-				element={
-					<PageWithUserContext user={{ User, setUser }}>
-						<Root />
-					</PageWithUserContext>
-				}
-			>
-				<Route index element={<Home />} />
+	return (
+		<Router>
+			<Header />
+			<Routes>
+				<Route path="/" element={<Home />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/new" element={<NewPalette />} />
 				<Route path="/palettes" element={<Palettes />} />
 				<Route path="/themes" element={<Themes />} />
-			</Route>
-		)
-	);
-	return (
-		<Router>
-			<Header />
-			<Routes></Routes>
-			<footer></footer>
+			</Routes>
+			<Footer />
 		</Router>
 	);
 }

@@ -19,6 +19,7 @@
 	--font-size-med: 1.5rem;
 	--font-size-large: 2rem;
 	--font-size-title: 4rem;
+	--font-size-footer: 0.9rem;
 	--font-title: "Gluten", Times, serif;
 	--font-display: "Arima", sans-serif;
 	--font-para: "Quicksand", Times, serif;
@@ -36,8 +37,8 @@
 #root {
 	box-sizing: border-box;
 	background-color: var(--dark-background);
-	width: 100vw;
-	height: 100vh;
+	width: 100%;
+	min-height: 100vh;
 	display: flex;
 	flex-flow: column;
 	place-items: center;
@@ -56,7 +57,7 @@ main {
 	place-items: center;
 }
 footer {
-	width: 100vw;
+	width: 100%;
 	padding: 0.7%;
 	color: #cde5d7;
 	text-align: center;

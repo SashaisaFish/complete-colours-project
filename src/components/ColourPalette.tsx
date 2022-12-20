@@ -1,33 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
 	ColourPaletteSC,
 	ColourSwatchSC,
+	GradientBarSC,
 	PaletteHeaderSC,
+	SwatchContainerSC,
 } from "../styles/styledComponents";
+import PaletteInterface from "../types/paletteInterface";
+import ColourSwatch from "./ColourSwatch";
 
-interface Palette {
-	name: string;
-	theme?: string;
-	colours: string[];
-}
 interface PaletteProps {
-	palette: Palette;
+	palette: PaletteInterface;
 }
 
 const ColourPalette: React.FC<PaletteProps> = ({ palette }) => {
-	const swatches: string[] = palette.colours;
+	const swatches: string[] = palette.colours
+		.slice(1, -1)
+		.replace(/[']/g, "")
+		.split(", ");
+	//console.log(swatches);
+	const [Gradient, setGradient] = useState(swatches.join(","));
 	return (
 		<ColourPaletteSC id={palette.name}>
 			<PaletteHeaderSC>{palette.name}</PaletteHeaderSC>
-			{swatches.map((color, index) => {
+			{/* {sampleSwatches.map((color: string) => {
+				console.log(color);
 				return (
 					<ColourSwatchSC
 						hex={color}
-						id={`${index}-${color}`}
-						key={`${index}-${color}`}
+						id={color}
+						key={color}
 					></ColourSwatchSC>
 				);
-			})}
+			})} */}
+			<SwatchContainerSC>
+				{swatches.map((color, index) => {
+					return (
+						<ColourSwatchSC
+							paletteId={palette.id}
+							hex={color}
+							id={color}
+							index={index}
+							key={color}
+						></ColourSwatchSC>
+					);
+				})}
+			</SwatchContainerSC>
+			<GradientBarSC
+				numColour={swatches.length}
+				gradient={Gradient}
+			></GradientBarSC>
 		</ColourPaletteSC>
 	);
 };

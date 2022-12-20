@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 import request from "../functions/request";
 import { databasePath } from "../functions/request";
 import {
@@ -10,6 +10,7 @@ import {
 	LoginTagSC,
 	SubmitSC,
 } from "../styles/styledComponents";
+import UserInterface from "../types/userInterface";
 
 interface User {
 	username: string;
@@ -19,7 +20,7 @@ interface User {
 const LoginForm: React.FC = () => {
 	const [Username, setUsername] = useState<string>();
 	const [Password, setPassword] = useState<string>();
-	const [User, setUser] = useState();
+	//const [UserId, setUserId] = useState(setUser.UserId);
 	const navigate = useNavigate();
 	return (
 		<>
@@ -44,9 +45,10 @@ const LoginForm: React.FC = () => {
 						data
 					);
 					const resData = await res.json();
+					console.log(resData);
 					if (res.ok) {
-						console.log(resData);
-						localStorage.setItem("id", resData);
+						localStorage.setItem("id", `${resData}`);
+						//setUserId(`${resData}`);
 						navigate("/palettes");
 					} else {
 						window.alert(resData.detail);

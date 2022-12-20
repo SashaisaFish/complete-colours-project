@@ -7,14 +7,17 @@ import {
 	ColourInputSC,
 } from "../styles/styledComponents";
 import { LetterA, LetterC } from "./SvgComponents";
-import { getRandomColour } from "../functions/colourFunctions";
+import { getRandomColour, hexToHSV } from "../functions/colourFunctions";
+import { updatePaletteColour } from "../functions/updateData";
 // import "../assets/LetterC.svg";
 
 // **TYPES
 type SwatchProps = {
 	className?: string;
+	paletteId: number;
 	id: string;
-	hex?: string;
+	index: number;
+	hex: string;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
@@ -25,15 +28,22 @@ type SwatchProps = {
 // value
 
 const ColourSwatch: React.FC<SwatchProps> = (props) => {
-	const [InputColour, setColour] = useState(getRandomColour());
-	if (props.hex) {
+	const [loaded, setLoaded] = useState(false);
+	const [InputColour, setColour] = useState<string>("");
+	//console.log(InputColour, hexToHSV(InputColour));
+	//console.log(InputColour);
+
+	if (props.hex && !loaded) {
 		setColour(props.hex);
+		setLoaded(true);
+	} else if (!loaded) {
+		setColour(getRandomColour());
 	}
 
 	return (
 		<div
 			className={props.className}
-			id={`${props.id}-container`}
+			id={`${props.index}-${props.id}-container`}
 			style={{ backgroundColor: InputColour }}
 		>
 			<ColourHexSC>{InputColour}</ColourHexSC>
@@ -56,8 +66,14 @@ const ColourSwatch: React.FC<SwatchProps> = (props) => {
 						setColour(e.target.value);
 					}
 				}}
-				onBlur={(e) => {
+				onBlur={async (e) => {
 					// PUT colour value in database to InputColour
+					// paletteid, hex, index
+					updatePaletteColour(
+						props.paletteId,
+						InputColour,
+						props.index
+					);
 				}}
 				type="color"
 				name={props.id}

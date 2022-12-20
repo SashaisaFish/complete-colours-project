@@ -1,10 +1,10 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
-const UserContext = createContext({
-	User: "",
-	setUser: () => {
-		console.log("NO USER UPDATER");
-	},
-});
+interface UserContext {
+	User: string;
+	setUser: React.Dispatch<React.SetStateAction<string>>;
+}
 
-export default UserContext;
+const userContext = createContext<UserContext | null>(null);
+
+export default userContext;
