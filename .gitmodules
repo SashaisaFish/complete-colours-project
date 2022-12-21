@@ -1,0 +1,3 @@
+[submodule "colors-project"]
+	path = colors-project
+	url = https://github.com/SashaisaFish/colours-react.git
