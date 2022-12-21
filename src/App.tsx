@@ -21,6 +21,7 @@ import Error from "./pages/Error";
 import getUserId from "./functions/getUserId";
 import Footer from "./components/Footer";
 import loginHandler from "./functions/loginHandler";
+import Test from "./pages/test";
 
 function App() {
 	// const [loaded, setLoaded] = useState(false);
@@ -43,6 +44,7 @@ function App() {
 				<Route path="/new" element={<NewPalette />} />
 				<Route path="/palettes" element={<Palettes />} />
 				<Route path="/themes" element={<Themes />} />
+				<Route path="/test" element={<Test />} />
 			</Routes>
 			<Footer />
 		</Router>

@@ -5,39 +5,61 @@ export function getRandomColour(): string {
 	}
 
 	return hex;
-	// if (hex.length === 7) {
-	// 	return hex;
-	// }
-	// return "#E9F0F0";
+}
+
+// function getRandomColor(): string {
+// 	// Generate random values for hue, saturation, and value
+// 	let h = Math.floor(Math.random() * 360);
+// 	let s = Math.random();
+// 	let v = Math.random();
+
+// 	// Convert the HSV values to a hex color string
+// 	return HSVToHex({h, s, v});
+//   }
+
+//   console.log(getRandomColor());  // Prints a random color
+
+export function getAnalogousColour(inputColour: string): string {
+	// convert inputColour (hex) to hsv
+	let convertedInput = hexToHSV(inputColour);
+	console.log(convertedInput);
+	// get random number between 30 and 60
+	let randomNumber = Math.floor(Math.random() * 31) + 30;
+	// randomise 0 and 1
+	let zeroOrOne = Math.floor(Math.random() * 2);
+	// if 0, subtract random number from h value
+	if (zeroOrOne === 0){
+		convertedInput.h -= randomNumber;
+	}
+	// if 1, add random number to h value
+	if (zeroOrOne === 1){
+		convertedInput.h += randomNumber;
+	}
+	// do same with s and v but with smaller values
+	// convert to hex
+
+	let outputColour = "";
+	return outputColour;
+}
+
+export function getComplementaryColour(inputColour: string): string {
+	// convert inputColour (hex) to hsv
+	// get random number between ?? and ??
+	// randomise 0 and 1
+	
+	// if 0, subtract random number from h value
+	// if 1, add random number to h value
+	// do same with s and v but with smaller values
+	// convert to hex
+
+	let outputColour = "";
+
+	return outputColour;
 }
 
 // need function to convert HSV > RGB > Hex and Hex > RGB > HSV
 // https://www.rapidtables.com/convert/color/hsv-to-rgb.html
 // https://www.rapidtables.com/convert/color/how-rgb-to-hex.html
-
-// export function HSVtoRGB(): string {
-// 	let RGBValue = "";
-
-// 	return RGBValue;
-// }
-
-// export function RGBtoHex(): string {
-// 	let HexValue = "";
-
-// 	return HexValue;
-// }
-
-// export function HextoRGB():string {
-// 	let RGBValue = "";
-
-// 	return RGBValue;
-// }
-
-// export function RGBtoHSV():string {
-// 	let HSVValue = "";
-
-// 	return HSVValue;
-// }
 
 export function HSVToHex(hsv: { h: number; s: number; v: number }): string {
 	// Convert the hue to a value between 0 and 6
@@ -70,6 +92,7 @@ export function HSVToHex(hsv: { h: number; s: number; v: number }): string {
 	r += m;
 	g += m;
 	b += m;
+	console.log("r", r, "g", g, "b", b);
 
 	// Convert R, G, and B to hex strings and return the result
 	return (
@@ -130,3 +153,10 @@ export function hexToHSV(hex: string): { h: number; s: number; v: number } {
 	//return `${hValue}, ${sValue}, ${vValue}`;
 	return { h: +hValue, s: +sValue, v: +vValue };
 }
+
+const hex = "#777777";
+const hsv = hexToHSV(hex);
+const outcome = HSVToHex(hsv);
+console.log("hex", hex);
+console.log("hsv", hsv);
+console.log("hex outcome", outcome);
