@@ -7,8 +7,13 @@ import {
 	ColourInputSC,
 } from "../styles/styledComponents";
 import { LetterA, LetterC } from "./SvgComponents";
-import { getRandomColour, hexToHSV } from "../functions/colourFunctions";
-import { updatePaletteColour } from "../functions/updateData";
+import {
+	getAnalogousColour,
+	getComplementaryColour,
+	getRandomColour,
+	hexToHSV,
+} from "../functions/colourFunctions";
+import { newPaletteColour, updatePaletteColour } from "../functions/updateData";
 // import "../assets/LetterC.svg";
 
 // **TYPES
@@ -23,9 +28,6 @@ type SwatchProps = {
 
 // values on database:
 // hex
-// hue
-// saturation
-// value
 
 const ColourSwatch: React.FC<SwatchProps> = (props) => {
 	const [loaded, setLoaded] = useState(false);
@@ -33,11 +35,9 @@ const ColourSwatch: React.FC<SwatchProps> = (props) => {
 	//console.log(InputColour, hexToHSV(InputColour));
 	//console.log(InputColour);
 
-	if (props.hex && !loaded) {
+	if (!loaded) {
 		setColour(props.hex);
 		setLoaded(true);
-	} else if (!loaded) {
-		setColour(getRandomColour());
 	}
 
 	return (
@@ -47,12 +47,25 @@ const ColourSwatch: React.FC<SwatchProps> = (props) => {
 			style={{ backgroundColor: InputColour }}
 		>
 			<ColourHexSC>{InputColour}</ColourHexSC>
-			<AddNewSC className="add-analogous">
+			<AddNewSC
+				className="add-analogous"
+				onClick={(e) => {
+					const newColour = getAnalogousColour(InputColour);
+					newPaletteColour(props.paletteId, newColour);
+				}}
+			>
 				{/* onClick perform function to find analogous colour and then perform fetch
 				to POST new entry with that colour value on database */}
+
 				<LetterA />
 			</AddNewSC>
-			<AddNewSC className="add-complementary">
+			<AddNewSC
+				className="add-complementary"
+				onClick={(e) => {
+					const newColour = getComplementaryColour(InputColour);
+					newPaletteColour(props.paletteId, newColour);
+				}}
+			>
 				{/* onClick perform function to find complementary colour and then perform fetch
 				to POST on database, then refetch all  */}
 				<LetterC />

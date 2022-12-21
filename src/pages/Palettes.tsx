@@ -22,7 +22,7 @@ import PaletteInterface from "../types/paletteInterface";
 const Palettes: React.FC = () => {
 	const id = getUserId();
 	const [Palettes, setPalettes] = useState<PaletteInterface[]>([]);
-	const [loaded, setLoaded] = useState(false);
+	//const [loaded, setLoaded] = useState(false);
 	const [show, setShow] = useState(false);
 	const [User, setUser] = useState(id);
 	const navigate = useNavigate();
@@ -31,13 +31,11 @@ const Palettes: React.FC = () => {
 		if (typeof id === "string") {
 			const data: PaletteInterface[] = await getPalettes(id);
 			setPalettes(data);
-			setLoaded(true);
 		}
 	};
-	if (!loaded) {
+	useEffect(() => {
 		setData();
-	}
-
+	}, []);
 	useEffect(() => {
 		const loggedInUser = localStorage.getItem("id");
 		if (loggedInUser && loggedInUser !== "-1") {

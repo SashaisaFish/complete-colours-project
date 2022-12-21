@@ -64,8 +64,8 @@ export const LeftArrow: React.FC<SVGInterface> = (props) => (
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
 		viewBox="0 0 64 64"
-		width={props.size ? props.size : 48}
-		height={props.size ? props.size : 48}
+		width={props.size ? props.size : 32}
+		height={props.size ? props.size : 32}
 		{...props}
 	>
 		<g
@@ -125,8 +125,8 @@ export const RightArrow: React.FC<SVGInterface> = (props) => (
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
 		viewBox="0 0 64 64"
-		width={props.size ? props.size : 48}
-		height={props.size ? props.size : 48}
+		width={props.size ? props.size : 32}
+		height={props.size ? props.size : 32}
 		{...props}
 	>
 		<g

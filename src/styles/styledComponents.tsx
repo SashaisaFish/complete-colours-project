@@ -48,7 +48,7 @@ export const NavContainer = styled.nav`
 	display: flex;
 	background-color: var(--dark-background);
 	justify-content: space-between;
-	height: 50px;
+	height: 55px;
 	width: 100%;
 	padding: 1.5% 15% 0.5%;
 	border-bottom: 2px solid var(--accent-blue);
@@ -355,7 +355,7 @@ export const SidebarDivSC = styled.nav`
 	//flex-grow: 1;
 	height: 100vh;
 	position: sticky;
-	top: 50px;
+	top: 55px;
 	align-self: flex-start;
 `;
 export const SidebarSC = styled.div`

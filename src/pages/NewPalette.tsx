@@ -69,7 +69,7 @@ const NewPalette: React.FC = () => {
 						const data: NewPalette = {
 							name: Name,
 							theme: Theme,
-							colours: [`${initialSwatch}`, "#ffffff"],
+							colours: [`${initialSwatch}`],
 							public: Public,
 							user_id: id,
 						};

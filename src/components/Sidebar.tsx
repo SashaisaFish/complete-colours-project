@@ -20,13 +20,13 @@ export const SidebarButton: React.FC<SidebarProps> = (props) => {
 	if (props.show) {
 		return (
 			<SidebarButtonSC>
-				<LeftArrow />
+				<LeftArrow size={32} />
 			</SidebarButtonSC>
 		);
 	} else {
 		return (
 			<SidebarButtonSC>
-				<RightArrow />
+				<RightArrow size={32} />
 			</SidebarButtonSC>
 		);
 	}
