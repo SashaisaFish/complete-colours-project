@@ -1,3 +1,6 @@
 [submodule "colors-project"]
 	path = colors-project
 	url = https://github.com/SashaisaFish/colours-react.git
+[submodule "fast-api-tutorial"]
+	path = fast-api-tutorial
+	url = https://github.com/kersh2000/fast-api-tutorial.git
