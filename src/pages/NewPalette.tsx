@@ -34,18 +34,20 @@ interface NewPalette {
 
 const NewPalette: React.FC = () => {
 	const id = getUserId();
+
 	const [Name, setName] = useState("");
 	const [Theme, setTheme] = useState<string | null>(null);
 	const [Public, setPublic] = useState<string>("0");
 	const [Swatches, setSwatches] = useState<string[]>([]);
 	const [NewPalette, setNewPalette] = useState<PaletteInterface>({
-		id: 0,
-		name: "string",
-		theme: "string",
+		id: -1,
+		name: "",
+		theme: "",
 		colours: "",
 		public: 0,
 		user_id: +id,
 	});
+	const [update, setUpdate] = useState<PaletteInterface>(NewPalette);
 	const [Submitted, setSubmitted] = useState(false);
 	const [User, setUser] = useState(id);
 	const navigate = useNavigate();
@@ -173,7 +175,7 @@ const NewPalette: React.FC = () => {
 			{/* 
 			<ColourPalette palette={NewPalette}></ColourPalette>
 			*/}
-			<ColourPalette palette={NewPalette} />
+			<ColourPalette palette={update} setUpdate={setUpdate} />
 		</main>
 	);
 };

@@ -269,7 +269,7 @@ export const GradientBarSC = styled(GradientBar)`
 export const ColourSwatchSC = styled(ColourSwatch)`
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	grid-template-rows: 1fr repeat(6, auto) 1fr;
+	grid-template-rows: 1fr repeat(8, auto) 1fr;
 	justify-items: center;
 	flex-grow: 1;
 	/* border: 2px solid var(--dark-background); */
@@ -331,6 +331,34 @@ export const AddNewSC = styled.button`
 		filter: drop-shadow(0 0 4px var(--o-white));
 	}
 `;
+export const SubmitColourSC = styled.button`
+	grid-row: 7 / 8;
+	grid-column: 1 / 3;
+	margin: 2%;
+	background: none;
+	font-family: var(--font-title);
+	font-size: var(--font-size-med);
+	color: white;
+	text-shadow: 2px 2px var(--dark-background);
+	transition: all 0.2s ease-out;
+	&:hover {
+		text-shadow: -2px -2px var(--dark-background);
+	}
+`;
+export const DeleteColourSC = styled.button`
+	grid-row: 8 / 9;
+	grid-column: 1 / 3;
+	margin: 2%;
+	background: none;
+	font-family: var(--font-title);
+	font-size: var(--font-size-med);
+	color: white;
+	text-shadow: 2px 2px var(--dark-background);
+	transition: all 0.2s ease-out;
+	&:hover {
+		text-shadow: -2px -2px var(--dark-background);
+	}
+`;
 export const PlusButtonSC = styled.button`
 	grid-row: 3 / 4;
 	font-family: var(--font-title);
@@ -378,7 +406,7 @@ export const SidebarUlSC = styled.ul`
 export const SidebarLiSC = styled.li`
 	margin: 2% 5%;
 `;
-export const SidebarLinkSC = styled(NavLink)`
+export const SidebarLinkSC = styled.a`
 	font-family: var(--font-para);
 	font-size: var(--font-size-small);
 	text-decoration: none;

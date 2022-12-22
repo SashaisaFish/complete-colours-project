@@ -40,11 +40,11 @@ function App() {
 			<Header />
 			<Routes>
 				<Route path="/" element={<Home />} />
-				<Route path="/register" element={<Register />} />
-				<Route path="/new" element={<NewPalette />} />
-				<Route path="/palettes" element={<Palettes />} />
-				<Route path="/themes" element={<Themes />} />
-				<Route path="/test" element={<Test />} />
+				<Route path="/register/" element={<Register />} />
+				<Route path="/new/" element={<NewPalette />} />
+				<Route path="/palettes/" element={<Palettes />} />
+				<Route path="/themes/" element={<Themes />} />
+				<Route path="/test/" element={<Test />} />
 			</Routes>
 			<Footer />
 		</Router>

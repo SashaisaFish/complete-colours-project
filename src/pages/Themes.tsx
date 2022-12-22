@@ -15,6 +15,14 @@ import { getThemedPalettes, getThemes } from "../functions/getData";
 
 const Themes: React.FC = () => {
 	const id = getUserId();
+	const [update, setUpdate] = useState<PaletteInterface>({
+		id: -1,
+		name: "",
+		theme: "",
+		colours: "[]",
+		user_id: 0,
+		public: 0,
+	});
 	const [Themes, setThemes] = useState([]);
 	const [Palettes, setPalettes] = useState<PaletteInterface[]>([]);
 	const [loadedThemes, setLoadedThemes] = useState(false);
@@ -47,7 +55,7 @@ const Themes: React.FC = () => {
 					{Themes.map((theme, index) => {
 						return (
 							<SidebarLiSC key={`${index}-${theme}`}>
-								<SidebarLinkSC to={`#${theme}`}>
+								<SidebarLinkSC href={`#${theme}`}>
 									{theme}
 								</SidebarLinkSC>
 							</SidebarLiSC>
@@ -77,10 +85,12 @@ const Themes: React.FC = () => {
 					<ThemeContainerSC id={theme} key={theme}>
 						<ThemeHeaderSC>{theme}</ThemeHeaderSC>
 						{Palettes.map((palette: PaletteInterface) => {
+							setUpdate(palette);
 							return (
 								<ColourPalette
-									palette={palette}
+									palette={update}
 									key={`${palette.name}-${palette.id}`}
+									setUpdate={setUpdate}
 								></ColourPalette>
 							);
 						})}

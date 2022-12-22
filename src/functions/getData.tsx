@@ -11,6 +11,16 @@ export const getPalettes = async (id: string) => {
 		return "error";
 	}
 };
+export const getOnePalette = async (id: number) => {
+	const res = await request(`/palette/${id}`, { method: "GET" });
+	if (res.ok) {
+		const palettes = await res.json();
+		return palettes;
+	} else {
+		console.log(await res.json());
+		return "error";
+	}
+};
 
 export const getThemes = async (id: string) => {
 	const res = await request(`/distinct/${id}`, { method: "GET" });
