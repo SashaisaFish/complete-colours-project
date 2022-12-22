@@ -96,7 +96,7 @@ class ColourSwatch extends React.Component<SwatchProps, SwatchStates> {
 					<LetterC />
 				</AddNewSC>
 				<ColourInputLabelSC htmlFor={this.props.id}>
-					Click to Change Colour
+					Colour Picker
 				</ColourInputLabelSC>
 				<ColourInputSC
 					onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -141,7 +141,7 @@ class ColourSwatch extends React.Component<SwatchProps, SwatchStates> {
 						this.props.removeColours(this.props.index);
 					}}
 				>
-					DELETE
+					x
 				</DeleteColourSC>
 			</div>
 		);

@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Gluten&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Arima&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Playfair+Display&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
 
 :root {
@@ -10,18 +10,20 @@
 	--accent-blue: #18d1c8;
 	--text-background: #e9f0f0;
 	--text-colour: #231f2a;
-	--o-white: rgba(255, 255, 255, 0.7);
-	--o-black: rgba(20, 18, 20, 0.7);
-	--button-shine: 1px 2px 2px var(--o-white) inset,
-		-1px -1px 5px 1px var(--o-black) inset;
-	--drop-shadow: 1px 2px 5px var(--o-black);
+	--o-white: rgba(255, 255, 255, 0.5);
+	--o-black: rgba(20, 18, 20, 0.5);
+	--o-grey: rgba(150, 150, 150, 0.2);
+	--button-shine: -2px -2px 5px var(--o-black) inset,
+		2px 2px 5px var(--o-white) inset;
+	--small-drop-shadow: 2px 2px 4px var(--o-black);
+	--large-drop-shadow: 4px 4px 6px var(--o-black);
 	--font-size-small: 1rem;
 	--font-size-med: 1.5rem;
 	--font-size-large: 2rem;
 	--font-size-title: 4rem;
 	--font-size-footer: 0.9rem;
 	--font-title: "Gluten", Times, serif;
-	--font-display: "Arima", sans-serif;
+	--font-display: "Playfair Display", sans-serif;
 	--font-para: "Quicksand", Times, serif;
 }
 
