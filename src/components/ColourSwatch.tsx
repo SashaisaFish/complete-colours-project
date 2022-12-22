@@ -1,5 +1,5 @@
 // **IMPORTS
-import React, { useState } from "react";
+import React from "react";
 import {
 	AddNewSC,
 	ColourHexSC,
@@ -12,8 +12,6 @@ import { LetterA, LetterC } from "./SvgComponents";
 import {
 	getAnalogousColour,
 	getComplementaryColour,
-	getRandomColour,
-	hexToHSV,
 } from "../functions/colourFunctions";
 import {
 	deletePaletteColour,
@@ -44,9 +42,6 @@ type SwatchStates = {
 // hex
 
 class ColourSwatch extends React.Component<SwatchProps, SwatchStates> {
-	constructor(props: SwatchProps) {
-		super(props);
-	}
 	state: SwatchStates = {
 		loaded: false,
 		InputColour: "",
@@ -58,11 +53,6 @@ class ColourSwatch extends React.Component<SwatchProps, SwatchStates> {
 		this.setState({ InputColour: input });
 	}
 	render() {
-		//const [loaded, setLoaded] = useState(false);
-		//const [InputColour, setColour] = useState<string>("");
-		//console.log(InputColour, hexToHSV(InputColour));
-		//console.log(InputColour);
-
 		if (!this.state.loaded) {
 			this.setColour(this.props.hex);
 			this.setLoaded(true);
@@ -78,30 +68,31 @@ class ColourSwatch extends React.Component<SwatchProps, SwatchStates> {
 				<AddNewSC
 					className="add-analogous"
 					onClick={(e) => {
+						// find analagous colour based on current colour
 						const newColour: string = getAnalogousColour(
 							this.state.InputColour
 						);
+						// PUT to database
 						newPaletteColour(this.props.paletteId, newColour);
+						// update parent
 						this.props.addColours(newColour);
 					}}
 				>
-					{/* onClick perform function to find analogous colour and then perform fetch
-				to POST new entry with that colour value on database */}
-
 					<LetterA />
 				</AddNewSC>
 				<AddNewSC
 					className="add-complementary"
 					onClick={(e) => {
+						// find complementary colour based on current colour
 						const newColour: string = getComplementaryColour(
 							this.state.InputColour
 						);
+						// PUT to database
 						newPaletteColour(this.props.paletteId, newColour);
+						// update parent
 						this.props.addColours(newColour);
 					}}
 				>
-					{/* onClick perform function to find complementary colour and then perform fetch
-				to POST on database, then refetch all  */}
 					<LetterC />
 				</AddNewSC>
 				<ColourInputLabelSC htmlFor={this.props.id}>
@@ -113,7 +104,6 @@ class ColourSwatch extends React.Component<SwatchProps, SwatchStates> {
 							this.setColour(e.target.value);
 						}
 					}}
-					// instead of onBlur, add submit button to colour swatch
 					type="color"
 					name={this.props.id}
 					id={this.props.id}
@@ -131,6 +121,7 @@ class ColourSwatch extends React.Component<SwatchProps, SwatchStates> {
 							this.state.InputColour,
 							this.props.index
 						);
+						// update parent
 						this.props.setColours(
 							this.state.InputColour,
 							this.props.index
@@ -141,10 +132,12 @@ class ColourSwatch extends React.Component<SwatchProps, SwatchStates> {
 				</SubmitColourSC>
 				<DeleteColourSC
 					onClick={async (e) => {
+						// PUT to database
 						deletePaletteColour(
 							this.props.paletteId,
 							this.props.index
 						);
+						// update parent
 						this.props.removeColours(this.props.index);
 					}}
 				>

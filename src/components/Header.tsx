@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { AppHeaderSC, AppTitleSC } from "../styles/styledComponents";
-import UserInterface from "../types/userInterface";
 import NavBar from "./NavBar";
 
 const Header: React.FC = () => {

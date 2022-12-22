@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import ColourPalette from "../components/ColourPalette";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
 	SidebarUlSC,
 	SidebarLiSC,
@@ -15,28 +15,16 @@ import { getThemedPalettes, getThemes } from "../functions/getData";
 
 const Themes: React.FC = () => {
 	const id = getUserId();
-	const [update, setUpdate] = useState<PaletteInterface>({
-		id: -1,
-		name: "",
-		theme: "",
-		colours: "[]",
-		user_id: 0,
-		public: 0,
-	});
-	const [Themes, setThemes] = useState([]);
+	const [Themes, setThemes] = useState<string[]>([]);
 	const [Palettes, setPalettes] = useState<PaletteInterface[]>([]);
 	const [loadedThemes, setLoadedThemes] = useState(false);
-	const [User, setUser] = useState(id);
 	const navigate = useNavigate();
 	useEffect(() => {
 		const loggedInUser = localStorage.getItem("id");
-		if (loggedInUser && loggedInUser !== "-1") {
-			const id = getUserId();
-			setUser(id);
-		} else {
+		if (!loggedInUser || loggedInUser === "-1") {
 			navigate("/");
 		}
-	}, []);
+	});
 	const setDataThemes = async () => {
 		if (typeof id === "string") {
 			const data = await getThemes(id);
@@ -85,12 +73,10 @@ const Themes: React.FC = () => {
 					<ThemeContainerSC id={theme} key={theme}>
 						<ThemeHeaderSC>{theme}</ThemeHeaderSC>
 						{Palettes.map((palette: PaletteInterface) => {
-							setUpdate(palette);
 							return (
 								<ColourPalette
-									palette={update}
+									palette={palette}
 									key={`${palette.name}-${palette.id}`}
-									setUpdate={setUpdate}
 								></ColourPalette>
 							);
 						})}

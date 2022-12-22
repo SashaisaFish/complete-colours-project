@@ -1,14 +1,8 @@
 import styled from "styled-components";
 import ColourSwatch from "../components/ColourSwatch";
-import {
-	TextInput,
-	SubmitInput,
-	CheckInput,
-	RadioField,
-	RadioInput,
-} from "../components/Inputs";
+import { SubmitInput, CheckInput, RadioField } from "../components/Inputs";
 import { Link, NavLink } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
+//import Sidebar from "../components/Sidebar";
 import DivInterface from "../types/divInterface";
 
 // **GENERAL
@@ -50,46 +44,30 @@ export const NavContainer = styled.nav`
 	justify-content: space-between;
 	height: 55px;
 	width: 100%;
-	padding: 1.5% 15% 0.5%;
+	padding: 0 15% 0;
 	border-bottom: 2px solid var(--accent-blue);
 	position: sticky;
 	top: 0;
 	z-index: 2;
 `;
 export const NavButton = styled(NavLink)`
+	display: flex;
+	place-items: center;
+	text-align: center;
 	font-family: var(--font-para);
-	font-size: calc(var(--font-size-small) * 1.1);
+	font-size: 18px;
 	text-decoration: none;
 	background-color: var(--accent-pink);
-	padding: 0.8%;
+	padding: 15px 5px;
+	margin: 10px;
 	border-radius: 10px;
 	box-shadow: -5px -5px var(--accent-yellow);
 	transition: all 0.3s ease-out;
-
 	&:link,
 	&:visited {
 		color: white;
 		text-shadow: 1px 1px 1px var(--o-black);
 	}
-	&:hover {
-		box-shadow: 5px -5px var(--accent-yellow);
-	}
-	&:active {
-		box-shadow: 3px -3px var(--accent-yellow);
-	}
-`;
-export const LogoutButtonSC = styled.button`
-	font-family: var(--font-para);
-	font-size: calc(var(--font-size-small) * 1.1);
-	text-decoration: none;
-	background-color: var(--accent-pink);
-	padding: 0.8%;
-	border-radius: 10px;
-	box-shadow: -5px -5px var(--accent-yellow);
-	transition: all 0.3s ease-out;
-	color: white;
-	text-shadow: 1px 1px 1px var(--o-black);
-
 	&:hover {
 		box-shadow: 5px -5px var(--accent-yellow);
 	}

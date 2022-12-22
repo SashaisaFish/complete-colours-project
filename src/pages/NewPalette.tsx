@@ -1,8 +1,5 @@
 import React, { useEffect } from "react";
-import ColourSwatch from "../components/ColourSwatch";
 import {
-	ColourPaletteSC,
-	ColourSwatchSC,
 	PaletteFormSC,
 	PaletteHeaderSC,
 	PaletteInputNameSC,
@@ -18,11 +15,10 @@ import { useState } from "react";
 import ColourPalette from "../components/ColourPalette";
 import getUserId from "../functions/getUserId";
 import { useNavigate } from "react-router-dom";
-import { CheckInput } from "../components/Inputs";
 import request from "../functions/request";
 import PaletteInterface from "../types/paletteInterface";
 
-interface NewPalette {
+interface NewPaletteInterface {
 	name: string;
 	theme: string | null;
 	colours: string[];
@@ -39,7 +35,7 @@ const NewPalette: React.FC = () => {
 	const [Theme, setTheme] = useState<string | null>(null);
 	const [Public, setPublic] = useState<string>("0");
 	const [Swatches, setSwatches] = useState<string[]>([]);
-	const [NewPalette, setNewPalette] = useState<PaletteInterface>({
+	const [palette, setPalette] = useState<PaletteInterface>({
 		id: -1,
 		name: "",
 		theme: "",
@@ -47,19 +43,14 @@ const NewPalette: React.FC = () => {
 		public: 0,
 		user_id: +id,
 	});
-	const [update, setUpdate] = useState<PaletteInterface>(NewPalette);
 	const [Submitted, setSubmitted] = useState(false);
-	const [User, setUser] = useState(id);
 	const navigate = useNavigate();
 	useEffect(() => {
 		const loggedInUser = localStorage.getItem("id");
-		if (loggedInUser && loggedInUser !== "-1") {
-			const id = getUserId();
-			setUser(id);
-		} else {
+		if (!loggedInUser || loggedInUser === "-1") {
 			navigate("/");
 		}
-	}, []);
+	});
 	useEffect(() => {});
 	if (Submitted === false) {
 		return (
@@ -68,18 +59,14 @@ const NewPalette: React.FC = () => {
 					onSubmit={async (e: React.ChangeEvent<HTMLFormElement>) => {
 						e.preventDefault();
 						let initialSwatch = getRandomColour();
-						const data: NewPalette = {
+						const data: NewPaletteInterface = {
 							name: Name,
 							theme: Theme,
 							colours: [`${initialSwatch}`],
 							public: Public,
 							user_id: id,
 						};
-						//console.log("raw", data);
-						//console.log("string", JSON.stringify(data));
-						const sendData = JSON.stringify(data);
-						// fetch request to database POST palette name & initialSwatch
-
+						// fetch request to database POST NewPalette
 						const res = await request(
 							`/palettes`,
 							{
@@ -89,15 +76,14 @@ const NewPalette: React.FC = () => {
 						);
 						const resData: PaletteInterface = await res.json();
 						if (res.ok) {
-							console.log("response:", resData);
-							setNewPalette(resData);
-							//console.log("NewPalette:", NewPalette);
-							//console.log("colours array:", resData.colours);
+							//set response to NewPalette and console log
+							console.log("NewPalette:", resData);
+							setPalette(resData);
+							// clean up colours data, set to Swatches, and log
 							const swatchArray = resData.colours
 								.slice(1, -1)
 								.replace(/[']/g, "")
 								.split(", ");
-							console.log("swatchArray:", swatchArray);
 							setSwatches(swatchArray);
 							console.log("Swatches:", Swatches);
 						} else {
@@ -172,10 +158,7 @@ const NewPalette: React.FC = () => {
 
 	return (
 		<main>
-			{/* 
-			<ColourPalette palette={NewPalette}></ColourPalette>
-			*/}
-			<ColourPalette palette={update} setUpdate={setUpdate} />
+			<ColourPalette palette={palette} />
 		</main>
 	);
 };

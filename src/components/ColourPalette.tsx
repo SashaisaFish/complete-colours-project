@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { getOnePalette } from "../functions/getData";
+import React from "react";
+//import { getOnePalette } from "../functions/getData";
 import {
 	ColourPaletteSC,
 	ColourSwatchSC,
@@ -11,7 +11,6 @@ import PaletteInterface from "../types/paletteInterface";
 
 interface PaletteProps {
 	palette: PaletteInterface;
-	setUpdate: React.Dispatch<React.SetStateAction<PaletteInterface>>;
 }
 type PaletteState = {
 	palette: PaletteInterface;
@@ -19,9 +18,6 @@ type PaletteState = {
 };
 
 class ColourPalette extends React.Component<PaletteProps, PaletteState> {
-	constructor(props: PaletteProps) {
-		super(props);
-	}
 	state: PaletteState = {
 		palette: {
 			id: -2,

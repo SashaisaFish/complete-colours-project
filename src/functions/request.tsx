@@ -1,13 +1,3 @@
-interface Palette {
-	name: string;
-	theme?: string;
-	colours: string[];
-}
-interface User {
-	username: string;
-	password: string;
-}
-
 interface Options {
 	method?: string;
 	credentials?: RequestCredentials;

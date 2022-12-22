@@ -1,4 +1,3 @@
-import PaletteInterface from "../types/paletteInterface";
 import request from "./request";
 
 export const getPalettes = async (id: string) => {
@@ -27,7 +26,7 @@ export const getThemes = async (id: string) => {
 	if (res.ok) {
 		const themes = await res.json();
 		// Convert 'themes', an array of objects, into a tidier array of strings, called 'arr'
-		const arr: any = new Array();
+		const arr: string[] = [];
 		themes.forEach((value: { "theme": string | null }) => {
 			if (value["theme"] !== null) {
 				arr.push(value["theme"]);
@@ -36,7 +35,7 @@ export const getThemes = async (id: string) => {
 		return arr;
 	} else {
 		console.log(await res.json());
-		return "error";
+		return ["error"];
 	}
 };
 

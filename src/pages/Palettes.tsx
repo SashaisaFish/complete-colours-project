@@ -20,21 +20,9 @@ import PaletteInterface from "../types/paletteInterface";
 const Palettes: React.FC = () => {
 	const id = getUserId();
 	const [Palettes, setPalettes] = useState<PaletteInterface[]>([]);
-	const [update, setUpdate] = useState<PaletteInterface>({
-		id: -1,
-		name: "",
-		theme: "",
-		colours: "[]",
-		user_id: 0,
-		public: 0,
-	});
 	//const [loaded, setLoaded] = useState(false);
 	// to show sidebar
 	const [show, setShow] = useState(false);
-	// to load user
-	const [User, setUser] = useState(id);
-	// to navigate pages
-	const navigate = useNavigate();
 	// get all palettes for user
 	const setData = async () => {
 		if (typeof id === "string") {
@@ -46,17 +34,15 @@ const Palettes: React.FC = () => {
 	// call get palettes function on load
 	useEffect(() => {
 		setData();
-	}, []);
-
+	});
+	// to navigate pages
+	const navigate = useNavigate();
 	useEffect(() => {
 		const loggedInUser = localStorage.getItem("id");
-		if (loggedInUser && loggedInUser !== "-1") {
-			const id = getUserId();
-			setUser(id);
-		} else {
+		if (!loggedInUser || loggedInUser === "-1") {
 			navigate("/");
 		}
-	}, []);
+	});
 	return (
 		<SidebarMainSC>
 			<SidebarDivSC>
@@ -93,13 +79,7 @@ const Palettes: React.FC = () => {
 			<PaletteListSC>
 				{Palettes.map((palette: PaletteInterface) => {
 					//setUpdate(palette);
-					return (
-						<ColourPalette
-							palette={palette}
-							key={palette.id}
-							setUpdate={setUpdate}
-						/>
-					);
+					return <ColourPalette palette={palette} key={palette.id} />;
 				})}
 			</PaletteListSC>
 		</SidebarMainSC>

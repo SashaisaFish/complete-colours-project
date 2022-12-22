@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import request from "../functions/request";
-import { databasePath } from "../functions/request";
 import {
 	LoginFormSC,
 	LoginInputSC,
@@ -10,33 +9,17 @@ import {
 	LoginTagSC,
 	SubmitSC,
 } from "../styles/styledComponents";
-import UserInterface from "../types/userInterface";
-
-interface User {
-	username: string;
-	password: string;
-}
 
 const LoginForm: React.FC = () => {
 	const [Username, setUsername] = useState<string>();
 	const [Password, setPassword] = useState<string>();
-	//const [UserId, setUserId] = useState(setUser.UserId);
 	const navigate = useNavigate();
 	return (
 		<>
 			<LoginFormSC
-				// action="{`${databasePath}/login`}"
-				// method="POST"
-				//target="_blank"
 				onSubmit={async (e) => {
 					e.preventDefault();
-					// const data = JSON.stringify({
-					// 	username: Username,
-					// 	password: Password,
-					// });
 					const data = `username=${Username}&password=${Password}`;
-
-					// accidental copy paste lol
 					const res = await request(
 						"/login",
 						{
@@ -45,10 +28,9 @@ const LoginForm: React.FC = () => {
 						data
 					);
 					const resData = await res.json();
-					console.log(resData);
+					console.log("login", resData);
 					if (res.ok) {
 						localStorage.setItem("id", `${resData}`);
-						//setUserId(`${resData}`);
 						navigate("/palettes");
 					} else {
 						window.alert(resData.detail);
