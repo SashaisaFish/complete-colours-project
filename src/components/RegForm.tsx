@@ -30,9 +30,9 @@ const RegForm: React.FC = () => {
 						data
 					);
 					const resData = await res.json();
-					if (typeof resData === "string") {
-						console.log(resData);
-						localStorage.setItem("id", resData);
+					console.log("register", resData);
+					if (res.ok) {
+						localStorage.setItem("id", `${resData}`);
 						navigate("/palettes");
 					} else {
 						window.alert(resData.detail);
