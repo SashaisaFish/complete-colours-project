@@ -17,7 +17,7 @@ const Themes: React.FC = () => {
 	const id = getUserId();
 	const [Themes, setThemes] = useState<string[]>([]);
 	const [Palettes, setPalettes] = useState<PaletteInterface[]>([]);
-	const [loadedThemes, setLoadedThemes] = useState(false);
+	const [loaded, setLoaded] = useState(false);
 	const navigate = useNavigate();
 	useEffect(() => {
 		const loggedInUser = localStorage.getItem("id");
@@ -28,13 +28,13 @@ const Themes: React.FC = () => {
 	const setDataThemes = async () => {
 		if (typeof id === "string") {
 			const data = await getThemes(id);
+			console.log("themes", data);
 			setThemes(data);
-			setLoadedThemes(true);
 		}
 	};
-	if (!loadedThemes) {
+	useEffect(() => {
 		setDataThemes();
-	}
+	}, []);
 
 	return (
 		<main>
@@ -52,20 +52,20 @@ const Themes: React.FC = () => {
 				</SidebarUlSC>
 			</nav>
 			{Themes.map((theme: string) => {
+				//setLoaded(false);
 				// for each theme, fetch all palettes in that theme
-				// is there a way to ensure /palettes/id/theme returns an array of objects
-				// even if there is only one?
-				const setPaletteThemes = async () => {
-					const data: PaletteInterface[] | "error" =
-						await getThemedPalettes(id, theme);
-					if (typeof data === "string") {
-						console.log("ERROR");
-					} else {
-						setPalettes(data);
-						console.log("Palettes:", Palettes);
-					}
+				const setThemedPalettes = async () => {
+					const data: PaletteInterface[] = await getThemedPalettes(
+						id,
+						theme
+					);
+					setPalettes(data);
+					console.log("Palettes:", Palettes);
 				};
-				setPaletteThemes();
+				if (!loaded) {
+					setThemedPalettes();
+					setLoaded(true);
+				}
 				// response: data = [{Palette}]
 				//setPalettes(data);
 				//const palettes: Palette[] = data;

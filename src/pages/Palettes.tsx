@@ -34,7 +34,7 @@ const Palettes: React.FC = () => {
 	// call get palettes function on load
 	useEffect(() => {
 		setData();
-	});
+	}, []);
 	// to navigate pages
 	const navigate = useNavigate();
 	useEffect(() => {
