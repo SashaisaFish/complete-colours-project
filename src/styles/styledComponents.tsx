@@ -433,8 +433,25 @@ export const SidebarLinkSC = styled.a`
 	}
 `;
 // **THEMES
-export const ThemeContainerSC = styled.section``;
-export const ThemeHeaderSC = styled.h3``;
+export const ThemeListSC = styled.article`
+	display: flex;
+	flex-direction: column;
+	place-items: center;
+	flex-grow: 1;
+`;
+export const ThemeContainerSC = styled.section`
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+`;
+export const ThemeHeaderSC = styled.h3`
+	place-self: center;
+	font-family: var(--font-display);
+	font-size: var(--font-size-title);
+	margin: 1%;
+	color: var(--text-background);
+	text-shadow: 0 0 1px var(--dark-background), 2px 2px 2px var(--o-black);
+`;
 //  **ERROR
 export const ErrorContainerSC = styled.section`
 	display: flex;

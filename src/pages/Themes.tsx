@@ -8,17 +8,27 @@ import {
 	SidebarLinkSC,
 	ThemeContainerSC,
 	ThemeHeaderSC,
+	PaletteListSC,
+	SidebarMainSC,
+	SidebarDivSC,
+	SidebarButtonSC,
+	SidebarSC,
+	ThemeListSC,
 } from "../styles/styledComponents";
 import PaletteInterface from "../types/paletteInterface";
 import getUserId from "../functions/getUserId";
 import { getThemedPalettes, getThemes } from "../functions/getData";
+import { LeftArrow, RightArrow } from "../components/SvgComponents";
+import ThemedPalettes from "../components/ThemedPalettes";
 
 const Themes: React.FC = () => {
 	const id = getUserId();
-	const [Themes, setThemes] = useState<string[]>([]);
+	const [show, setShow] = useState(false);
+	const [ThemesList, setThemesList] = useState<string[]>([]);
 	const [Palettes, setPalettes] = useState<PaletteInterface[]>([]);
 	const [loaded, setLoaded] = useState(false);
 	const navigate = useNavigate();
+
 	useEffect(() => {
 		const loggedInUser = localStorage.getItem("id");
 		if (!loggedInUser || loggedInUser === "-1") {
@@ -29,61 +39,61 @@ const Themes: React.FC = () => {
 		if (typeof id === "string") {
 			const data = await getThemes(id);
 			console.log("themes", data);
-			setThemes(data);
+			setThemesList(data);
 		}
+	};
+	const setThemedPalettes = async (index: number) => {
+		const data: PaletteInterface[] = await getThemedPalettes(
+			id,
+			ThemesList[index]
+		);
+		return data;
+		// setPalettes(data);
+		// console.log("Palettes:", data);
 	};
 	useEffect(() => {
 		setDataThemes();
 	}, []);
 
 	return (
-		<main>
-			<nav>
-				<SidebarUlSC>
-					{Themes.map((theme, index) => {
-						return (
-							<SidebarLiSC key={`${index}-${theme}`}>
-								<SidebarLinkSC href={`#${theme}`}>
-									{theme}
-								</SidebarLinkSC>
-							</SidebarLiSC>
-						);
-					})}
-				</SidebarUlSC>
-			</nav>
-			{Themes.map((theme: string) => {
-				//setLoaded(false);
-				// for each theme, fetch all palettes in that theme
-				const setThemedPalettes = async () => {
-					const data: PaletteInterface[] = await getThemedPalettes(
-						id,
-						theme
-					);
-					setPalettes(data);
-					console.log("Palettes:", Palettes);
-				};
-				if (!loaded) {
-					setThemedPalettes();
-					setLoaded(true);
-				}
-				// response: data = [{Palette}]
-				//setPalettes(data);
-				//const palettes: Palette[] = data;
-				return (
-					<ThemeContainerSC id={theme} key={theme}>
-						<ThemeHeaderSC>{theme}</ThemeHeaderSC>
-						{Palettes.map((palette: PaletteInterface) => {
+		<SidebarMainSC>
+			<SidebarDivSC>
+				<SidebarButtonSC
+					style={{ display: show ? "unset" : "none" }}
+					onClick={() => {
+						setShow(!show);
+					}}
+				>
+					<LeftArrow />
+				</SidebarButtonSC>
+				<SidebarButtonSC
+					style={{ display: show ? "none" : "unset" }}
+					onClick={() => {
+						setShow(!show);
+					}}
+				>
+					<RightArrow />
+				</SidebarButtonSC>
+				<SidebarSC style={{ display: show ? "unset" : "none" }}>
+					<SidebarUlSC>
+						{ThemesList.map((theme: string, index: number) => {
 							return (
-								<ColourPalette
-									palette={palette}
-									key={`${palette.name}-${palette.id}`}
-								></ColourPalette>
+								<SidebarLiSC key={`${index}-${theme}`}>
+									<SidebarLinkSC href={`#${theme}`}>
+										{theme}
+									</SidebarLinkSC>
+								</SidebarLiSC>
 							);
 						})}
-					</ThemeContainerSC>
-				);
-			})}
-		</main>
+					</SidebarUlSC>
+				</SidebarSC>
+			</SidebarDivSC>
+			<ThemeListSC>
+				{ThemesList.map((theme: string) => {
+					return <ThemedPalettes theme={theme} />;
+				})}
+			</ThemeListSC>
+		</SidebarMainSC>
 	);
 };
 
